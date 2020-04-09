@@ -13,7 +13,7 @@ public class BibliotecaTest {
 
     @Before
     public void SetupTest(){
-        biblioteca = new Biblioteca("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        biblioteca = new Biblioteca();
     }
 
     @Test

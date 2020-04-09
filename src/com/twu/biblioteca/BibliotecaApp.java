@@ -6,7 +6,7 @@ public class BibliotecaApp {
     private static Biblioteca Biblioteca;
 
     public static void main(String[] args) {
-        Biblioteca = new Biblioteca("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        Biblioteca = new Biblioteca();
         System.out.println(Biblioteca.getWelcomeMessage());
     }
 }
