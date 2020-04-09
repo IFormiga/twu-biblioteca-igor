@@ -1,15 +1,19 @@
 package com.twu.biblioteca;
 
 
-import com.sun.codemodel.internal.JMethod;
 import com.twu.biblioteca.models.Biblioteca;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
 
-    Biblioteca biblioteca;
+    private Biblioteca biblioteca;
 
     @Before
     public void SetupTest(){
@@ -22,5 +26,16 @@ public class BibliotecaTest {
         String message = this.biblioteca.getWelcomeMessage();
 
         assertEquals( expectedMessage, message);
+    }
+
+    @Test
+    public void checkThatTheBooksListingIsCorrect(){
+        ArrayList<String> expectedLibraryBooks = new ArrayList<String>(){{
+            add("Clean Code");
+            add("Refactoring: improving the design of existing code");
+            add("Clean Architecture");
+        }};
+        ArrayList<String> libraryBooks = Biblioteca.getAllBooks();
+        assertEquals(expectedLibraryBooks, libraryBooks);
     }
 }
