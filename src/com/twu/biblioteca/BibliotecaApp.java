@@ -8,5 +8,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Biblioteca = new Biblioteca();
         System.out.println(Biblioteca.getWelcomeMessage());
+        System.out.println("List of our books:");
+        Biblioteca.getAllBooks().stream().forEach(System.out::println);
     }
 }
