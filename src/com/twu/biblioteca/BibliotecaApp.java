@@ -8,15 +8,20 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Biblioteca = new Library();
         displayWelcomeMessage();
+        displayTheLibraryMenu();
         displayAllTheBooksInfo();
     }
 
-    private static void displayAllTheBooksInfo() {
+    public static void displayAllTheBooksInfo() {
         System.out.println("List of our books:");
         Biblioteca.getAllBooksInfo().stream().forEach(System.out::println);
     }
 
-    private static void displayWelcomeMessage(){
+    public static void displayWelcomeMessage(){
         System.out.println(Biblioteca.getWelcomeMessage());
+    }
+
+    public static void displayTheLibraryMenu(){
+        System.out.println("Biblioteca Menu\n1) Access the book list.");
     }
 }
