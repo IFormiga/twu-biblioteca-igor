@@ -45,4 +45,12 @@ public class BibliotecaAppTest {
         bibliotecaApp.selectAMenuOption("1");
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    public void shouldShowErrorMessageIfOptionDoNotExist(){
+        String expectedOutput = "Invalid Option.\n";
+
+        bibliotecaApp.selectAMenuOption("Invalid");
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }

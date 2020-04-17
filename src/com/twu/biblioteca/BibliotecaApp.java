@@ -28,6 +28,8 @@ public class BibliotecaApp {
             case "1":
                 displayAllTheBooksInfo();
                 break;
+            default:
+                System.out.println("Invalid Option.");
         }
     }
 
