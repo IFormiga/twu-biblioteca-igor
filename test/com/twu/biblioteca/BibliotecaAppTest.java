@@ -53,4 +53,12 @@ public class BibliotecaAppTest {
         bibliotecaApp.selectAMenuOption("Invalid");
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    public void shouldDisplayTheCorrectWelcomeMessage(){
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+
+        bibliotecaApp.displayWelcomeMessage();
+        assertEquals(expectedMessage, outContent.toString());
+    }
 }
