@@ -7,15 +7,23 @@ import java.io.InputStreamReader;
 
 public class BibliotecaApp {
 
-    private static Library Biblioteca = new Library();;
+    private static Library Biblioteca = new Library();
     private static BufferedReader inputReader =
             new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
+        String menuOption = new String();
         displayWelcomeMessage();
-        displayTheLibraryMenu();
-        String menuOption = inputReader.readLine();
-        selectAMenuOption(menuOption);
+        do {
+            displayTheLibraryMenu();
+            menuOption = inputReader.readLine();
+            selectAMenuOption(menuOption);
+
+        } while(!checkIfApplicationShouldQuit(menuOption));
+    }
+
+    private static boolean checkIfApplicationShouldQuit(String menuOption) {
+        return menuOption.equals("Quit");
     }
 
     public static void displayAllTheBooksInfo() {
@@ -28,9 +36,16 @@ public class BibliotecaApp {
             case "1":
                 displayAllTheBooksInfo();
                 break;
+            case "Quit":
+                displayQuittingMessage();
+                break;
             default:
                 System.out.println("Please select a valid option!");
         }
+    }
+
+    private static void displayQuittingMessage() {
+        System.out.println("Goodbye!");
     }
 
     public static void displayWelcomeMessage(){
@@ -38,6 +53,6 @@ public class BibliotecaApp {
     }
 
     public static void displayTheLibraryMenu(){
-        System.out.println("Biblioteca Menu\n1) Access the book list.");
+        System.out.println("Biblioteca Menu\n1) Access the book list.\n Insert Quit at any time to leave.");
     }
 }
