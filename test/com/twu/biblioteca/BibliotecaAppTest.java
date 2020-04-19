@@ -26,15 +26,23 @@ public class BibliotecaAppTest {
     }
 
     @Test
+    public void shouldBeAbleToQuitTheApplication(){
+        String expectedMessageAfterQuitting = "Goodbye!\n";
+        bibliotecaApp.selectAMenuOption("Quit");
+
+        assertEquals(expectedMessageAfterQuitting, outContent.toString());
+    }
+
+    @Test
     public void shouldDisplayMenuCorrectly(){
         // expected
-        String menuPrintedAsExpected = "Biblioteca Menu\n1) Access the book list.\n";
+        String menuPrintedAsExpected = "Biblioteca Menu\n1) Access the book list.\n Insert Quit at any time to leave.\n";
         // actual data
         bibliotecaApp.displayTheLibraryMenu();
         //assert
         assertEquals(menuPrintedAsExpected, outContent.toString());
     }
-    //shouldAllowTheUserToChooseOption1
+
     @Test
     public void shouldAllowTheUserToChooseOption1(){
         String expectedOutput = "List of our books:\n" +
