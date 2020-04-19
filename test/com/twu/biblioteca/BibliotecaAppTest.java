@@ -48,15 +48,15 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldShowErrorMessageIfOptionDoNotExist(){
-        String expectedOutput = "Invalid Option.\n";
+        String expectedOutput = "Please select a valid option!\n";
 
-        bibliotecaApp.selectAMenuOption("Invalid");
+        bibliotecaApp.selectAMenuOption("Please select a valid option!");
         assertEquals(expectedOutput, outContent.toString());
     }
 
     @Test
     public void shouldDisplayTheCorrectWelcomeMessage(){
-        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
 
         bibliotecaApp.displayWelcomeMessage();
         assertEquals(expectedMessage, outContent.toString());

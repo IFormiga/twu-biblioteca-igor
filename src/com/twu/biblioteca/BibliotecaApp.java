@@ -29,7 +29,7 @@ public class BibliotecaApp {
                 displayAllTheBooksInfo();
                 break;
             default:
-                System.out.println("Invalid Option.");
+                System.out.println("Please select a valid option!");
         }
     }
 
