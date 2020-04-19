@@ -56,7 +56,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldDisplayTheCorrectWelcomeMessage(){
-        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
 
         bibliotecaApp.displayWelcomeMessage();
         assertEquals(expectedMessage, outContent.toString());
