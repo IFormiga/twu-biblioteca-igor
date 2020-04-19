@@ -48,9 +48,9 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldShowErrorMessageIfOptionDoNotExist(){
-        String expectedOutput = "Invalid Option.\n";
+        String expectedOutput = "Please select a valid option!\n";
 
-        bibliotecaApp.selectAMenuOption("Invalid");
+        bibliotecaApp.selectAMenuOption("Please select a valid option!");
         assertEquals(expectedOutput, outContent.toString());
     }
 
