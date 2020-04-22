@@ -56,6 +56,14 @@ public class BibliotecaAppTest {
     }
 
     @Test
+    public void shouldDisplayASuccessMessageWhenCheckoutABookSuccessfully(){
+        String expectedOutput = Constants.CHECKOUT_BOOK_SUCCESS_MESSAGE + "\n";
+        bibliotecaApp.displayCheckoutBookSuccessMessage();
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
     public void shouldShowErrorMessageIfOptionDoNotExist(){
         String expectedOutput = Constants.INVALID_OPTION_MESSAGE + "\n";
 

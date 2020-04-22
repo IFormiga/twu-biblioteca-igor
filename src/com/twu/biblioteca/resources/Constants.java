@@ -17,4 +17,5 @@ public final class Constants {
     public static final String THIRD_BOOK_EXAMPLE_NAME = "Clean Architecture";
     public static final String THIRD_BOOK_EXAMPLE_AUTHOR = "Robert Cecil Martin";
     public static final int THIRD_BOOK_EXAMPLE_RELEASE_YEAR = 2017;
+    public static final String CHECKOUT_BOOK_SUCCESS_MESSAGE = "Thank you! Enjoy the book";
 }
