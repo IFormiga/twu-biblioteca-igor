@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.resources.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,17 +17,13 @@ public class LibraryTest {
     private Library biblioteca;
 
     @Before
-    public void SetupTest(){
-        biblioteca = new Library();
-    }
-    @After
-    public void after(){
+    public void setupTest(){
         biblioteca = new Library();
     }
 
     @Test
     public void shouldGetTheCorrectWelcomeMessage() {
-        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        String expectedMessage = Constants.WELCOME_MESSAGE;
         String message = this.biblioteca.getWelcomeMessage();
 
         assertEquals( expectedMessage, message);
@@ -42,7 +39,6 @@ public class LibraryTest {
 
     @Test
     public void shouldListTheCorrectBooksInfo() {
-        SetupTest();
         List<String> expectedLibraryBooksInfo = new ArrayList<String>();
         expectedLibraryBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
         expectedLibraryBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");

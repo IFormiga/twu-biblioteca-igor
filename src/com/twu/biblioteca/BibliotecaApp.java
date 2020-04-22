@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
+import com.sun.tools.internal.jxc.ap.Const;
 import com.twu.biblioteca.models.Library;
+import com.twu.biblioteca.resources.Constants;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class BibliotecaApp {
     }
 
     private static boolean checkIfApplicationShouldQuit(String menuOption) {
-        return menuOption.equals("Quit");
+        return menuOption.equals(Constants.QUIT_SYSTEM_KEYWORD);
     }
 
     public static void displayAllTheBooksInfo() {
@@ -39,11 +41,11 @@ public class BibliotecaApp {
             case "2":
                 checkoutBook();
                 break;
-            case "Quit":
+            case Constants.QUIT_SYSTEM_KEYWORD:
                 displayQuittingMessage();
                 break;
             default:
-                System.out.println("Please select a valid option!");
+                System.out.println(Constants.INVALID_OPTION_MESSAGE);
         }
     }
 
@@ -62,11 +64,11 @@ public class BibliotecaApp {
     }
 
     private static void displayTheCheckoutBookMessage() {
-        System.out.printf("Insert the book Id: ");
+        System.out.printf(Constants.CHECKOUT_BOOK_MESSAGE);
     }
 
     private static void displayQuittingMessage() {
-        System.out.println("Goodbye!");
+        System.out.println(Constants.QUITTING_MESSAGE);
     }
 
     public static void displayWelcomeMessage() {
@@ -74,6 +76,6 @@ public class BibliotecaApp {
     }
 
     public static void displayTheLibraryMenu() {
-        System.out.println("Biblioteca Menu\n1) Access the book list.\n2) Checkout a book.\n Insert Quit at any time to leave.");
+        System.out.println(Constants.LIBRARY_MENU);
     }
 }
