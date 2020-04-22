@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class BibliotecaAppTest {
-    private BibliotecaApp bibliotecaApp;
+    private BibliotecaApp bibliotecaApp = new BibliotecaApp();
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -52,6 +52,14 @@ public class BibliotecaAppTest {
                                 "Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017\n";
 
         bibliotecaApp.selectAMenuOption("1");
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void shouldDisplayASuccessMessageWhenCheckoutABookSuccessfully(){
+        String expectedOutput = Constants.CHECKOUT_BOOK_SUCCESS_MESSAGE + "\n";
+        bibliotecaApp.displayCheckoutBookSuccessMessage();
+
         assertEquals(expectedOutput, outContent.toString());
     }
 
