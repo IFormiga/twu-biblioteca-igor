@@ -54,9 +54,13 @@ public class BibliotecaApp {
         try{
             int bookId = requestTheBookId();
             biblioteca.checkoutABook(bookId);
+            displayCheckoutBookSuccessMessage();
         } catch(IOException e) {
 
         }
+    }
+    public static void displayCheckoutBookSuccessMessage(){
+        System.out.println(Constants.CHECKOUT_BOOK_SUCCESS_MESSAGE);
     }
 
     private static int requestTheBookId() throws IOException {

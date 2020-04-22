@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class BibliotecaAppTest {
-    private BibliotecaApp bibliotecaApp;
+    private BibliotecaApp bibliotecaApp = new BibliotecaApp();
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
