@@ -1,11 +1,12 @@
 package com.twu.biblioteca;
 
+import com.sun.tools.internal.jxc.ap.Const;
+import com.twu.biblioteca.resources.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -27,7 +28,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldBeAbleToQuitTheApplication(){
-        String expectedMessageAfterQuitting = "Goodbye!\n";
+        String expectedMessageAfterQuitting = Constants.QUITTING_MESSAGE +"\n";
         bibliotecaApp.selectAMenuOption("Quit");
 
         assertEquals(expectedMessageAfterQuitting, outContent.toString());
@@ -36,7 +37,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldDisplayMenuCorrectly(){
         // expected
-        String menuPrintedAsExpected = "Biblioteca Menu\n1) Access the book list.\n Insert Quit at any time to leave.\n";
+        String menuPrintedAsExpected = Constants.LIBRARY_MENU + "\n";
         // actual data
         bibliotecaApp.displayTheLibraryMenu();
         //assert
@@ -56,15 +57,15 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldShowErrorMessageIfOptionDoNotExist(){
-        String expectedOutput = "Please select a valid option!\n";
+        String expectedOutput = Constants.INVALID_OPTION_MESSAGE + "\n";
 
-        bibliotecaApp.selectAMenuOption("Please select a valid option!");
+        bibliotecaApp.selectAMenuOption("whatever");
         assertEquals(expectedOutput, outContent.toString());
     }
 
     @Test
     public void shouldDisplayTheCorrectWelcomeMessage(){
-        String expectedMessage = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
+        String expectedMessage = Constants.WELCOME_MESSAGE + "\n";
 
         bibliotecaApp.displayWelcomeMessage();
         assertEquals(expectedMessage, outContent.toString());
