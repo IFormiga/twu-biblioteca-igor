@@ -71,4 +71,11 @@ public class BibliotecaAppTest {
         bibliotecaApp.displayWelcomeMessage();
         assertEquals(expectedMessage, outContent.toString());
     }
+
+    @Test
+    public void shouldWhatever(){
+        bibliotecaApp.selectAMenuOption("2");
+
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
+    }
 }
