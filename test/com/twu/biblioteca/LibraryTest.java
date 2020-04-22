@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.models.Library;
-import com.twu.biblioteca.models.Book;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +19,10 @@ public class LibraryTest {
     public void SetupTest(){
         biblioteca = new Library();
     }
+    @After
+    public void after(){
+        biblioteca = new Library();
+    }
 
     @Test
     public void shouldGetTheCorrectWelcomeMessage() {
@@ -29,27 +33,36 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldBeAbleToCheckoutABook(){
+        int bookId = 1;
+        biblioteca.checkoutABook(bookId);
+
+        assertTrue(biblioteca.getABookById(bookId).isCheckedOut());
+    }
+
+    @Test
     public void shouldListTheCorrectBooksInfo() {
+        SetupTest();
         List<String> expectedLibraryBooksInfo = new ArrayList<String>();
         expectedLibraryBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
         expectedLibraryBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
         expectedLibraryBooksInfo.add("Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
 
-        List allBooksInfo = this.biblioteca.getAllBooksInfo();
+        List allBooksInfo = biblioteca.getAllAvailableBooksInfo();
 
         assertEquals(expectedLibraryBooksInfo, allBooksInfo);
     }
 
     @Test
     public void shouldListAuthorsInTheLibraryBooksInfo() {
-        boolean allBooksInfoHaveAuthors = biblioteca.getAllBooksInfo().stream().allMatch(b -> b.contains("Author"));
+        boolean allBooksInfoHaveAuthors = biblioteca.getAllAvailableBooksInfo().stream().allMatch(b -> b.contains("Author"));
 
         assertTrue(allBooksInfoHaveAuthors);
     }
 
     @Test
     public void shouldHave2ColumnsInTheLibraryBooksInfo(){
-        boolean allBooksInfoHaveColumnSeparators = biblioteca.getAllBooksInfo()
+        boolean allBooksInfoHaveColumnSeparators = biblioteca.getAllAvailableBooksInfo()
                 .stream()
                 .allMatch(b -> b.chars().filter(c -> c == '|').count() == 2);
 
@@ -58,8 +71,21 @@ public class LibraryTest {
 
     @Test
     public void shouldListReleaseYearInTheLibraryBooks() {
-        boolean allBooksInfoHaveReleaseYear = biblioteca.getAllBooksInfo().stream().allMatch(b -> b.contains("Release Year"));
+        boolean allBooksInfoHaveReleaseYear = biblioteca.getAllAvailableBooksInfo().stream().allMatch(b -> b.contains("Release Year"));
 
         assertTrue(allBooksInfoHaveReleaseYear);
+    }
+
+
+    @Test
+    public void shouldListOnlyAvailableBooks(){
+        List<String> expectedLibraryAvailableBooksInfo = new ArrayList<String>();
+        expectedLibraryAvailableBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
+        expectedLibraryAvailableBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
+
+        biblioteca.checkoutABook(3);
+        List allBooksInfo = this.biblioteca.getAllAvailableBooksInfo();
+
+        assertEquals(expectedLibraryAvailableBooksInfo, allBooksInfo);
     }
 }

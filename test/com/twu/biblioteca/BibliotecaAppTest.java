@@ -4,8 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,7 +35,10 @@ public class BibliotecaAppTest {
     @Test
     public void shouldDisplayMenuCorrectly(){
         // expected
-        String menuPrintedAsExpected = "Biblioteca Menu\n1) Access the book list.\n Insert Quit at any time to leave.\n";
+        String menuPrintedAsExpected = "Biblioteca Menu\n" +
+                "1) Access the book list.\n" +
+                "2) Checkout a book.\n"+
+                " Insert Quit at any time to leave.\n";
         // actual data
         bibliotecaApp.displayTheLibraryMenu();
         //assert

@@ -1,14 +1,26 @@
 package com.twu.biblioteca.models;
 
 public class Book {
+    private int Id;
+    public boolean isCheckedOut;
     private String Name;
     private String Author;
     private int ReleaseYear;
 
-    public Book(String name, String author, int releaseYear) {
-        Name = name;
-        Author = author;
-        ReleaseYear = releaseYear;
+    public Book(String name, String author, int releaseYear, int id) {
+        this.Id = id;
+        this.Name = name;
+        this.Author = author;
+        this.ReleaseYear = releaseYear;
+        this.isCheckedOut = false;
+    }
+
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
+    public int getId(){
+        return this.Id;
     }
 
     public String getName() {
