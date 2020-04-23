@@ -91,4 +91,19 @@ public class BibliotecaAppTest {
 
         assertTrue(outContent.toString().contains(expectedOutput));
     }
+
+    @Test
+    public void shouldListAsAvailableCheckOutedBookAfterBeingReturned() throws IOException {
+        String expectedOutput = "List of our books:\n" +
+                "Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008\n" +
+                "Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999\n" +
+                "Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017\n";
+        when(inputReader.readLine()).thenReturn("1");
+        bibliotecaApp.selectAMenuOption("2");
+        bibliotecaApp.selectAMenuOption("3");
+        outContent.reset();
+        bibliotecaApp.selectAMenuOption("1");
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }
