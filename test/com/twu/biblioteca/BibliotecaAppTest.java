@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.tools.internal.jxc.ap.Const;
 import com.twu.biblioteca.resources.Constants;
 import org.junit.After;
 import org.junit.Before;
@@ -8,17 +7,21 @@ import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class BibliotecaAppTest {
-    private BibliotecaApp bibliotecaApp = new BibliotecaApp();
+    private BufferedReader inputReader;
+    private BibliotecaApp bibliotecaApp;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setup(){
         System.setOut(new PrintStream(outContent));
+        inputReader = mock(BufferedReader.class);
+        bibliotecaApp = new BibliotecaApp(inputReader);
     }
 
     @After
@@ -77,5 +80,15 @@ public class BibliotecaAppTest {
 
         bibliotecaApp.displayWelcomeMessage();
         assertEquals(expectedMessage, outContent.toString());
+    }
+
+    @Test
+    public void shouldDisplayAnUnsuccessfulMessageWhenCheckoutABookFails() throws IOException {
+        String expectedOutput = Constants.CHECKOUT_BOOK_UNSUCCESSFUL_MESSAGE;
+
+        when(inputReader.readLine()).thenReturn("99999");
+        bibliotecaApp.selectAMenuOption("2");
+
+        assertTrue(outContent.toString().contains(expectedOutput));
     }
 }

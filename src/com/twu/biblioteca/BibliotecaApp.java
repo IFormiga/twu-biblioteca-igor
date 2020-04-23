@@ -1,5 +1,4 @@
 package com.twu.biblioteca;
-import com.sun.tools.internal.jxc.ap.Const;
 import com.twu.biblioteca.models.Library;
 import com.twu.biblioteca.resources.Constants;
 
@@ -7,18 +6,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.twu.biblioteca.resources.Constants.CHECKOUT_BOOK_UNSUCCESSFUL_MESSAGE;
+import static org.mockito.Mockito.mock;
+
 public class BibliotecaApp {
 
     private static Library biblioteca = new Library();
-    private static BufferedReader inputReader =
-            new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader _inputReader = new BufferedReader(new InputStreamReader(System.in));
+
+    public BibliotecaApp(BufferedReader inputReader) {
+        _inputReader = inputReader;
+    }
 
     public static void main(String[] args) throws IOException {
         String menuOption = new String();
         displayWelcomeMessage();
         do {
             displayTheLibraryMenu();
-            menuOption = inputReader.readLine();
+            menuOption = _inputReader.readLine();
             selectAMenuOption(menuOption);
 
         } while(!checkIfApplicationShouldQuit(menuOption));
@@ -53,8 +58,11 @@ public class BibliotecaApp {
         displayTheCheckoutBookMessage();
         try{
             int bookId = requestTheBookId();
-            biblioteca.checkoutABook(bookId);
-            displayCheckoutBookSuccessMessage();
+            boolean checkOutedWithSuccess = biblioteca.checkoutABook(bookId);
+            if(checkOutedWithSuccess)
+                displayCheckoutBookSuccessMessage();
+            else
+                System.out.println(CHECKOUT_BOOK_UNSUCCESSFUL_MESSAGE);
         } catch(IOException e) {
 
         }
@@ -64,7 +72,7 @@ public class BibliotecaApp {
     }
 
     private static int requestTheBookId() throws IOException {
-        return Integer.parseInt(inputReader.readLine());
+        return Integer.parseInt(_inputReader.readLine());
     }
 
     private static void displayTheCheckoutBookMessage() {
