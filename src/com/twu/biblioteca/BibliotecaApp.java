@@ -62,10 +62,12 @@ public class BibliotecaApp {
         try{
             int bookId = requestTheBookId();
             boolean bookWasReturnedWithSuccess = biblioteca.returnBook(bookId);
-            if(bookWasReturnedWithSuccess)
+            if(bookWasReturnedWithSuccess){
                 displayReturnBookSuccessMessage();
-            else
+            }
+            else{
                 displayReturnBooksUnsuccessfulMessage();
+            }
         } catch(IOException e) {
 
         }

@@ -115,9 +115,6 @@ public class BibliotecaAppTest {
         outContent.reset();
         simulateABookReturn();
 
-        when(inputReader.readLine()).thenReturn("1");
-        bibliotecaApp.selectAMenuOption("3");
-
         assertEquals(expectedOutput, outContent.toString());
     }
 
