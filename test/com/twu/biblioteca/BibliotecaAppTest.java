@@ -121,6 +121,16 @@ public class BibliotecaAppTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @Test
+    public void shouldDisplayAnUnsuccessfulMessageWhenReturnAWrongBook() throws IOException {
+        String expectedOutput = Constants.RETURN_BOOK_UNSUCCESSFUL_MESSAGE + "\n";
+
+        when(inputReader.readLine()).thenReturn("-1");
+        bibliotecaApp.selectAMenuOption("3");
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
     private void simulateABookReturn() throws IOException {
         when(inputReader.readLine()).thenReturn("1");
         bibliotecaApp.selectAMenuOption("3");
