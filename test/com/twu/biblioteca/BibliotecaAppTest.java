@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -126,7 +127,16 @@ public class BibliotecaAppTest {
 
         assertEquals(expectedOutput, outContent.toString());
     }
+    @Test
+    public void shouldDisplayAMovieListWhenChooseTheOption() {
+        String expectedMovieList = "Name: The Matrix | Year: 1999 | Director: Wachowski Sisters | Rating: 10\n"
+            +"Name: The Matrix Reloaded | Year: 2003 | Director: Wachowski Sisters | Rating: 8\n"
+            +"Name: The Matrix Revolutions | Year: 2003 | Director: Wachowski Sisters | Rating: 9\n";
 
+        bibliotecaApp.selectAMenuOption("4");
+
+        assertEquals(expectedMovieList, outContent.toString());
+    }
     private void simulateABookReturn(int bookId) throws IOException {
         when(inputReader.readLine()).thenReturn(String.valueOf(bookId));
         bibliotecaApp.selectAMenuOption("3");

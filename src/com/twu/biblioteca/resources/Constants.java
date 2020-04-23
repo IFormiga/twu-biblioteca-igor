@@ -8,7 +8,8 @@ public final class Constants {
     public static final String LIBRARY_MENU = "Biblioteca Menu\n" +
             "1) Access the book list.\n" +
             "2) Checkout a book.\n" +
-            "3)Return a book\n" +
+            "3) Return a book\n" +
+            "4) Access the movie list." +
             " Insert Quit at any time to leave.";
     public static final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
     public static final String QUIT_SYSTEM_KEYWORD = "Quit";

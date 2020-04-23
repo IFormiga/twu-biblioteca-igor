@@ -50,6 +50,9 @@ public class BibliotecaApp {
             case "3":
                 returnBook();
                 break;
+            case "4":
+                biblioteca.getAllMovies().stream().forEach(System.out::println);
+                break;
             case Constants.QUIT_SYSTEM_KEYWORD:
                 displayQuittingMessage();
                 break;
