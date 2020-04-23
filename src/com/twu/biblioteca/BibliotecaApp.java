@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static com.twu.biblioteca.resources.Constants.CHECKOUT_BOOK_UNSUCCESSFUL_MESSAGE;
+import static com.twu.biblioteca.resources.Constants.RETURN_BOOK_UNSUCCESSFUL_MESSAGE;
 import static org.mockito.Mockito.mock;
 
 public class BibliotecaApp {
@@ -61,8 +62,12 @@ public class BibliotecaApp {
         try{
             int bookId = requestTheBookId();
             boolean bookWasReturnedWithSuccess = biblioteca.returnBook(bookId);
-            if(bookWasReturnedWithSuccess)
+            if(bookWasReturnedWithSuccess){
                 displayReturnBookSuccessMessage();
+            }
+            else{
+                displayReturnBooksUnsuccessfulMessage();
+            }
         } catch(IOException e) {
 
         }
@@ -70,6 +75,10 @@ public class BibliotecaApp {
 
     private static void displayReturnBookSuccessMessage() {
         System.out.println(Constants.RETURN_BOOK_SUCCESS_MESSAGE);
+    }
+
+    private static void displayReturnBooksUnsuccessfulMessage() {
+        System.out.println(RETURN_BOOK_UNSUCCESSFUL_MESSAGE);
     }
 
     private static void checkoutBook() {
