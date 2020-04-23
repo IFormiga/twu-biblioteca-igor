@@ -98,8 +98,8 @@ public class BibliotecaAppTest {
                 "Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008\n" +
                 "Id: 2 | Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999\n" +
                 "Id: 3 | Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017\n";
-        simulateABookCheckout();
-        simulateABookReturn();
+        simulateABookCheckout(1);
+        simulateABookReturn(1);
         outContent.reset();
         when(inputReader.readLine()).thenReturn("1");
         bibliotecaApp.selectAMenuOption("1");
@@ -111,9 +111,9 @@ public class BibliotecaAppTest {
     public void shouldDisplayASuccessMessageWhenReturnABookSuccessfully() throws IOException {
         String expectedOutput = Constants.RETURN_BOOK_SUCCESS_MESSAGE + "\n";
 
-        simulateABookCheckout();
+        simulateABookCheckout(1);
         outContent.reset();
-        simulateABookReturn();
+        simulateABookReturn(1);
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -122,18 +122,17 @@ public class BibliotecaAppTest {
     public void shouldDisplayAnUnsuccessfulMessageWhenReturnAWrongBook() throws IOException {
         String expectedOutput = Constants.RETURN_BOOK_UNSUCCESSFUL_MESSAGE + "\n";
 
-        when(inputReader.readLine()).thenReturn("-1");
-        bibliotecaApp.selectAMenuOption("3");
+        simulateABookReturn(-1);
 
         assertEquals(expectedOutput, outContent.toString());
     }
 
-    private void simulateABookReturn() throws IOException {
-        when(inputReader.readLine()).thenReturn("1");
+    private void simulateABookReturn(int bookId) throws IOException {
+        when(inputReader.readLine()).thenReturn(String.valueOf(bookId));
         bibliotecaApp.selectAMenuOption("3");
     }
-    private void simulateABookCheckout() throws IOException {
-        when(inputReader.readLine()).thenReturn("1");
+    private void simulateABookCheckout(int bookId) throws IOException {
+        when(inputReader.readLine()).thenReturn(String.valueOf(bookId));
         bibliotecaApp.selectAMenuOption("2");
     }
 
