@@ -98,4 +98,14 @@ public class LibraryTest {
 
         assertEquals(expectedLibraryBooksInfo, allAvailableBooksInfo);
     }
+
+    @Test
+    public void shouldBeAbleToReturnACheckOutedBookWithSuccess(){
+        biblioteca.checkoutABook(1);
+        boolean expectedReturn = true;
+
+        boolean returnedCheckOutedBookWithSuccess = biblioteca.returnBook(1);
+
+        assertEquals(expectedReturn, returnedCheckOutedBookWithSuccess);
+    }
 }
