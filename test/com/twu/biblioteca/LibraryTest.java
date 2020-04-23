@@ -84,4 +84,18 @@ public class LibraryTest {
 
         assertEquals(expectedLibraryAvailableBooksInfo, allBooksInfo);
     }
+
+    @Test
+    public void shouldListReturnedBooksInTheAvailableList(){
+        biblioteca.checkoutABook(1);
+        List<String> expectedLibraryBooksInfo = new ArrayList<String>();
+        expectedLibraryBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
+        expectedLibraryBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
+        expectedLibraryBooksInfo.add("Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
+
+        biblioteca.returnBook(1);
+        List<String> allAvailableBooksInfo = biblioteca.getAllAvailableBooksInfo();
+
+        assertEquals(expectedLibraryBooksInfo, allAvailableBooksInfo);
+    }
 }
