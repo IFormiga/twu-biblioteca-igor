@@ -121,6 +121,17 @@ public class BibliotecaAppTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @Test
+    public void shouldDisplayAMovieListWhenChooseTheOption() {
+        String expectedMovieList = "Name: The Matrix | Year: 1999 | Director: Wachowski Sisters | Rating: 10\n"
+            +"Name: The Matrix Reloaded | Year: 2003 | Director: Wachowski Sisters | Rating: 8\n"
+            +"Name: The Matrix Revolutions | Year: 2003 | Director: Wachowski Sisters | Rating: 9\n";
+
+        bibliotecaApp.selectAMenuOption("4");
+
+        assertEquals(expectedMovieList, outContent.toString());
+    }
+
     private void simulateABookReturn() throws IOException {
         when(inputReader.readLine()).thenReturn("1");
         bibliotecaApp.selectAMenuOption("3");
