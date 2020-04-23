@@ -46,11 +46,22 @@ public class BibliotecaApp {
             case "2":
                 checkoutBook();
                 break;
+            case "3":
+                returnBook();
             case Constants.QUIT_SYSTEM_KEYWORD:
                 displayQuittingMessage();
                 break;
             default:
                 System.out.println(Constants.INVALID_OPTION_MESSAGE);
+        }
+    }
+
+    private static void returnBook() {
+        try{
+            int bookId = requestTheBookId();
+            biblioteca.returnBook(bookId);
+        } catch(IOException e) {
+
         }
     }
 
