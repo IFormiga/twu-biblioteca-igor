@@ -22,11 +22,21 @@ public class Library {
         return welcomeMessage;
     }
 
-    public void checkoutABook(int bookId){
-        this.books.stream()
-                .filter(b -> b.getId() == bookId && b.isCheckedOut() != true)
-                .findFirst()
-                .ifPresent(b -> b.isCheckedOut = true);
+    public boolean checkoutABook(int bookId){
+        if(checkIfTheBookExistsAndIsAvailableToCheckout(bookId)){
+            this.books.stream()
+                    .filter(b -> b.getId() == bookId && b.isCheckedOut() != true)
+                    .findFirst()
+                    .ifPresent(b -> b.isCheckedOut = true);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private boolean checkIfTheBookExistsAndIsAvailableToCheckout(int bookId) {
+        return this.books.stream().anyMatch(b -> b.getId() == bookId && b.isCheckedOut() != true);
     }
 
     public Book getABookById(int bookId){
