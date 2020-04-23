@@ -98,12 +98,36 @@ public class BibliotecaAppTest {
                 "Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008\n" +
                 "Id: 2 | Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999\n" +
                 "Id: 3 | Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017\n";
-        when(inputReader.readLine()).thenReturn("1");
-        bibliotecaApp.selectAMenuOption("2");
-        bibliotecaApp.selectAMenuOption("3");
+        simulateABookCheckout();
+        simulateABookReturn();
         outContent.reset();
+        when(inputReader.readLine()).thenReturn("1");
         bibliotecaApp.selectAMenuOption("1");
 
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    public void shouldDisplayASuccessMessageWhenReturnABookSuccessfully() throws IOException {
+        String expectedOutput = Constants.RETURN_BOOK_SUCCESS_MESSAGE + "\n";
+
+        simulateABookCheckout();
+        outContent.reset();
+        simulateABookReturn();
+
+        when(inputReader.readLine()).thenReturn("1");
+        bibliotecaApp.selectAMenuOption("3");
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    private void simulateABookReturn() throws IOException {
+        when(inputReader.readLine()).thenReturn("1");
+        bibliotecaApp.selectAMenuOption("3");
+    }
+    private void simulateABookCheckout() throws IOException {
+        when(inputReader.readLine()).thenReturn("1");
+        bibliotecaApp.selectAMenuOption("2");
+    }
+
 }
