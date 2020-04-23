@@ -40,9 +40,9 @@ public class LibraryTest {
     @Test
     public void shouldListTheCorrectBooksInfo() {
         List<String> expectedLibraryBooksInfo = new ArrayList<String>();
-        expectedLibraryBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
-        expectedLibraryBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
-        expectedLibraryBooksInfo.add("Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
+        expectedLibraryBooksInfo.add("Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
+        expectedLibraryBooksInfo.add("Id: 2 | Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
+        expectedLibraryBooksInfo.add("Id: 3 | Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
 
         List allBooksInfo = biblioteca.getAllAvailableBooksInfo();
 
@@ -57,10 +57,10 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldHave2ColumnsInTheLibraryBooksInfo(){
+    public void shouldHave3ColumnsInTheLibraryBooksInfo(){
         boolean allBooksInfoHaveColumnSeparators = biblioteca.getAllAvailableBooksInfo()
                 .stream()
-                .allMatch(b -> b.chars().filter(c -> c == '|').count() == 2);
+                .allMatch(b -> b.chars().filter(c -> c == '|').count() == 3);
 
         assertTrue(allBooksInfoHaveColumnSeparators);
     }
@@ -76,9 +76,9 @@ public class LibraryTest {
     @Test
     public void shouldListOnlyAvailableBooks(){
         List<String> expectedLibraryAvailableBooksInfo = new ArrayList<String>();
-        expectedLibraryAvailableBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
-        expectedLibraryAvailableBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
-
+        expectedLibraryAvailableBooksInfo.add("Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
+        expectedLibraryAvailableBooksInfo.add("Id: 2 | Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
+                                                
         biblioteca.checkoutABook(3);
         List allBooksInfo = this.biblioteca.getAllAvailableBooksInfo();
 
@@ -89,9 +89,9 @@ public class LibraryTest {
     public void shouldListReturnedBooksInTheAvailableList(){
         biblioteca.checkoutABook(1);
         List<String> expectedLibraryBooksInfo = new ArrayList<String>();
-        expectedLibraryBooksInfo.add("Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
-        expectedLibraryBooksInfo.add("Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
-        expectedLibraryBooksInfo.add("Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
+        expectedLibraryBooksInfo.add("Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008");
+        expectedLibraryBooksInfo.add("Id: 2 | Name: Refactoring: improving the design of existing code | Author: Martin Fowler | Release Year: 1999");
+        expectedLibraryBooksInfo.add("Id: 3 | Name: Clean Architecture | Author: Robert Cecil Martin | Release Year: 2017");
 
         biblioteca.returnBook(1);
         List<String> allAvailableBooksInfo = biblioteca.getAllAvailableBooksInfo();
