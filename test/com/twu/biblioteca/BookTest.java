@@ -13,7 +13,7 @@ public class BookTest {
     public void shouldGetTheBookInfoInTheRightFormat(){
         book = new Book("Clean Code", "Robert Cecil Martin", 2008, 1);
         String bookInfo = book.getBookInfo();
-        String expectedOutput = "Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008";
+        String expectedOutput = "Id: 1 | Name: Clean Code | Author: Robert Cecil Martin | Release Year: 2008";
 
         assertEquals(bookInfo, expectedOutput);
     }

@@ -37,6 +37,8 @@ public class Book {
 
     public String getBookInfo(){
         String bookInfo = new String();
+        if(this.id > 0)
+            bookInfo += "Id: " + this.getId() + " | ";
         if(this.name != null)
             bookInfo += "Name: " + this.getName() + " | ";
         if(this.author != null)
