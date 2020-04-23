@@ -39,11 +39,25 @@ public class Library {
         return this.books.stream().anyMatch(b -> b.getId() == bookId && b.isCheckedOut() != true);
     }
 
+    private boolean checkIfTheBookExistsAndItsCheckedOut(int bookId){
+        return this.books.stream().anyMatch(b -> b.getId() == bookId && b.isCheckedOut() == true);
+    }
+
     public Book getABookById(int bookId){
         return this.books.stream()
                 .filter(b -> b.getId() == bookId)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public boolean returnBook(int bookId){
+        if(checkIfTheBookExistsAndItsCheckedOut(bookId)) {
+            getABookById(bookId).isCheckedOut = false;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 
