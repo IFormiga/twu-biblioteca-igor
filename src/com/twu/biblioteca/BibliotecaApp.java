@@ -48,6 +48,7 @@ public class BibliotecaApp {
                 break;
             case "3":
                 returnBook();
+                break;
             case Constants.QUIT_SYSTEM_KEYWORD:
                 displayQuittingMessage();
                 break;
@@ -59,10 +60,16 @@ public class BibliotecaApp {
     private static void returnBook() {
         try{
             int bookId = requestTheBookId();
-            biblioteca.returnBook(bookId);
+            boolean bookWasReturnedWithSuccess = biblioteca.returnBook(bookId);
+            if(bookWasReturnedWithSuccess)
+                displayReturnBookSuccessMessage();
         } catch(IOException e) {
 
         }
+    }
+
+    private static void displayReturnBookSuccessMessage() {
+        System.out.println(Constants.RETURN_BOOK_SUCCESS_MESSAGE);
     }
 
     private static void checkoutBook() {
